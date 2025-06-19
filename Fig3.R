@@ -193,56 +193,6 @@ p2 <- df_trajectory_compare %>%
     labs(x = "Age group (years)", y = "Area Under Curve\n of antibody kinetics") + theme_ft() + theme(legend.position = "none") 
 
 
-time <-1:514
-titre <- data_posteriorsAllExposure$.lower
-fit <- nls(titre ~ 1.1335829 * exp(-k * time), 
-           start = list(k = 0.01))
-
-k <- coef(fit)["k"]
-half_life <- log(2) / k
-
-data_titre_post_inf <- df_trajectory_summaries_trim %>% filter(age_group %in% c("60-74")) #<=5 5-18 19-59 60-74 75+
-data_titre_post_inf <- data_titre_post_inf  %>% filter(time > 19 )
-time <-1:380-19
-
-titre <- 10^(data_titre_post_inf$.lower) #.lower value .upper 
-
-fit <- nls(titre ~ 10^1.0097048 * exp(-k * time), 
-           start = list(k = 0.01))
-k <- coef(fit)["k"]
-k
-
-result <- df_trajectory_summaries_trim %>%
-  group_by(age_group) %>%
-  summarise(
-    max_value = max(value, na.rm = TRUE),
-    time_at_max_value = time[which.max(value)],
-    
-    max_lower = max(.lower, na.rm = TRUE),
-    time_at_max_lower = time[which.max(.lower)],
-    
-    max_upper = max(.upper, na.rm = TRUE),
-    time_at_max_upper = time[which.max(.upper)]
-  ) %>%
-  ungroup()
-
-df_antibody_decay <- tibble(
-  age_group = factor(c("<=5", "5-18", "19-59", "60-74", "75+"),
-                     levels = c("<=5", "5-18", "19-59", "60-74", "75+")),
-  
-  value = c(0.0163021, 0.005380346, 0.004494657, 0.008939115, 0.004955059),
-  
-  .lower = c(0.008601008, 0.00453597, 0.003870908, 0.008418373, 0.004152522),
-  
-  .upper = c(0.04106457, 0.01206784, 0.005541235, 0.01440799, 0.008791357)
-)
-p3 <- ggplot(df_antibody_decay, aes(x = age_group, y = value, color = age_group)) +
-  geom_point(size = 3) +  
-  geom_errorbar(aes(ymin = .lower, ymax = .upper), 
-                width = 0.1, linewidth = 1) +  
-  theme(legend.position = "none") + 
-  labs(x = "Age group (years)", y = "Decay rate of fold-rise in titre post infection") + theme_ft() + theme(legend.position = "none") 
-
 require(patchwork)
 
 p1/ (p2 + p3) + plot_annotation(tag_levels = "A")
