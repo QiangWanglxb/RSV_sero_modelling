@@ -189,8 +189,9 @@ p1 <- df_difference_boosting %>%
 df_trajectory_compare_sum <- df_trajectory_compare %>% group_by(age_group) %>% summarise(auc = mean(auc), value = mean(value))
 
 p2 <- df_trajectory_compare %>% 
-    ggplot() + stat_pointinterval(aes(x = age_group, y = auc, color = age_group)) + theme_bw() + 
-    labs(x = "Age group (years)", y = "Area Under Curve\n of antibody kinetics") + theme_ft() + theme(legend.position = "none") 
+    ggplot() + stat_pointinterval(aes(x = age_group, y = value, color = age_group)) + theme_bw() + theme(legend.position = "none") + 
+    labs(x = "Age group (years)", y = "Peak fold-rise of antibody kinetics") + theme_ft() + theme(legend.position = "none")  + 
+        scale_y_continuous(breaks = c(0, 1, 2, 3, 4, 5), labels = 10^c(0, 1, 2, 3, 4, 5)) 
 
 
 require(patchwork)
