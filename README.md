@@ -4,4 +4,4 @@ We applied the serojump framework—a Bayesian inference approach—to longitudi
 
 [Fig1-4] contains all codes to replicate the figures in the manuscript.
 
-More serojump detail could be found in reference: Hodgson, D. et al. serojump : A Bayesian tool for inferring infection timing and antibody kinetics from longitudinal serological data. Preprint at https://doi.org/10.1101/2025.03.04.25323335
+More serojump details could be found in reference: Hodgson, D. et al. serojump : A Bayesian tool for inferring infection timing and antibody kinetics from longitudinal serological data. Preprint at https://doi.org/10.1101/2025.03.04.25323335
