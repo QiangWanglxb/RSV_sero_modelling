@@ -1,4 +1,5 @@
-Summary: We applied the serojump framework—a Bayesian inference approach—to longitudinal respiratory syncytial virus (RSV) antibody titre data. Using reversible-jump Markov Chain Monte Carlo, serojump allows us to infer individual-level infection histories, estimate population-level RSV incidence, and crucially, quantify the protective effect of antibodies against infection. The model is implemented in R within the "serojump" package.
+Summary
+We applied the serojump framework—a Bayesian inference approach—to longitudinal respiratory syncytial virus (RSV) antibody titre data. Using reversible-jump Markov Chain Monte Carlo, serojump allows us to infer individual-level infection histories, estimate population-level RSV incidence, and crucially, quantify the protective effect of antibodies against infection. The model is implemented in R within the "serojump" package.
 
 [Fig1-4] contains all codes to replicate the figures in the manuscript.
 
