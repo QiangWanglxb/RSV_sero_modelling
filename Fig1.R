@@ -1,10 +1,10 @@
-df_sero <- read.csv("C:/Users/DELL/Desktop/df_sero.csv")
+df_sero <- read.csv("df_sero.csv")
 
-data <- read.csv("C:/Users/DELL/Desktop/Incidence.csv")
+data <- read.csv("Incidence.csv")
 
 p1 <- ggplot(data, aes(x = as.character(month), y = Incidence, group = 1)) +
   geom_bar(stat = "identity", fill = "#1f78b4", alpha = 0.5) +
-  geom_line(color = "black",size=0.3) +  # 添加�?
+  geom_line(color = "black",size=0.3) +  # æ·»åŠ çº?
   geom_point(color = "grey50", size = 1) +
   theme_minimal() +
   labs(x = "Time",
@@ -16,7 +16,7 @@ p1 <- ggplot(data, aes(x = as.character(month), y = Incidence, group = 1)) +
         panel.grid.minor = element_blank() ,
         panel.border = element_blank() ,
         panel.background = element_blank() ) +
-  theme(axis.ticks.length = unit(0.1, "cm"),               # 刻度线长�?
+  theme(axis.ticks.length = unit(0.1, "cm"),               
         axis.ticks = element_line(color = "black"),
         axis.line = element_line(color = 'black'), 
         axis.text.y = element_text(size = 9),
@@ -58,7 +58,7 @@ p2 <- ggplot(df_sero, aes(x = as.factor(r), y = values)) +
   ggtitle("B")+
   theme(plot.title = element_text(hjust = 0, size = 18, color = "gray10", face = "bold", margin = margin(b = 10)))
 
-p3 <- ggplot(df_sero_long, aes(x = Age, y = values, fill = as.factor(r))) +
+p3 <- ggplot(df_sero_long, aes(x = as.factor(Age), y = values, fill = as.factor(r))) +
   geom_boxplot(alpha = 0.6) +   
   scale_x_discrete(labels = age_labels) + 
   theme_bw() +  
@@ -80,3 +80,4 @@ p3 <- ggplot(df_sero_long, aes(x = Age, y = values, fill = as.factor(r))) +
 
 p12 <- p1 + p2
 p12/p3
+
