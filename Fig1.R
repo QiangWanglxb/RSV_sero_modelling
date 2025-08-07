@@ -1,6 +1,6 @@
-df_sero <- read.csv("df_sero.csv")
+df_sero <- read.csv(file = here::here("df_sero.csv"))
 
-data <- read.csv("Incidence.csv")
+data <- read.csv(file = here::here("Incidence.csv"))
 
 p1 <- ggplot(data, aes(x = as.character(month), y = Incidence, group = 1)) +
   geom_bar(stat = "identity", fill = "#1f78b4", alpha = 0.5) +
@@ -80,4 +80,5 @@ p3 <- ggplot(df_sero_long, aes(x = as.factor(Age), y = values, fill = as.factor(
 
 p12 <- p1 + p2
 p12/p3
+
 
